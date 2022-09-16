@@ -1,3 +1,9 @@
+var APIkey = "fe7c4a49b2f70c76f7ca3f6d351a96ee";
+
+var city;
+var state;
+var country;
+
 // add a favicon that changes based on the weather
 
 // Weather refreshes on a set Interval
