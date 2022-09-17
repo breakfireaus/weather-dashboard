@@ -28,18 +28,19 @@ var cityLongitude = 0;
 var cityLatitude = 0;
 
 var aside = $('aside');
-var weatherFormEl = $('weather-Form');
+var weatherFormEl = $('#weather-Form');
 var cityInputEl = $('#cityfield');
 var stateInputEl = $('#statefield');
 var countryInputEl = $('#countryfield');
 var historyList = $('#historyList');
-var currentWeatherEl = $('currentWeather');
-var futureWeatherEl = $('futureWeather');
+var currentWeatherEl = $('#currentWeather');
+var futureWeatherEl = $('#futureWeather');
 var currentCityName = '';
-
+var btnSubmit = $('#action-submit-city')
 // obtain data from the user input can search for a City also save data into search history
 function getUserInput(e) {
     e.preventDefault();
+    e.stopPropagation()
 
     var search = {};
     if (cityInputEl.val() !== '') {
@@ -65,6 +66,7 @@ function getUserInput(e) {
         liEl.attr('data-state', search.state);
         liEl.attr('data-country', search.country);
         historyList.prepend(liEl);
+
         console.log(previousSearchArray);
         renderAPI(search.city, search.state, search.country);
     }
@@ -72,14 +74,15 @@ function getUserInput(e) {
     cityInputEl.val('');
     stateInputEl.val('');
     countryInputEl.val('');
+    return false
 }
 
-weatherFormEl.on('submit', getUserInput);
+btnSubmit.on('click', getUserInput);
 
 // obtain data from search history Li Element
-function searchByHistory(e) {
-    e.preventDefault();
-    var element = e.target;
+function searchByHistory(event) {
+    event.preventDefault();
+    var element = event.target;
     if (element.matches("li") === true) {
         var cityName = element.textContent;
         var cityState = element.getAttribute("data-state");
@@ -94,7 +97,7 @@ function searchByHistory(e) {
         liEl.attr('data-country', cityCountry);
         historyList.prepend(liEl);
 
-        //saves history list to local storage
+        //saves history list 
         var search = {};
         search.city = cityName;
         search.state = cityState;
@@ -105,13 +108,20 @@ function searchByHistory(e) {
         saveData();
 
         renderAPI(cityName, cityState, cityCountry);
+
+        // Clears search history list
+    if (element.matches('button') === true) {
+        searchHistroyArray = [];
+        historyList.empty();
+        saveData();
+    }
     }
 
     // clear the search history 
 
     if (element.matches('button') === true) {
         previousSearchArray = [];
-        listHistory.empty();
+        historyList.empty();
         saveData();
     }
 }
@@ -122,9 +132,9 @@ aside.on("click", searchByHistory)
 // city results will display the current conditions and future conditions
 
 // Render the API info - Forces all async functions to sync *Must be labeled an a sync function with an async action such as fetch*
-async function renderAPI(cityName, cityState, cityCountry) {
+async function renderAPI (cityName, cityState, cityCountry) {
     // Async functions
-    await nameConverter(cityName, cityState, cityCountry);
+    await nameConverter (cityName, cityState, cityCountry);
     await obtainCityInfoAPI();
 
     //after these function occur for the sync
@@ -411,15 +421,8 @@ function displaySearchHistory () {
         var liEl = $("<li>" + previousSearchArray[k].city + "</li>");
         liEl.attr('data-state', previousSearchArray[k].state);
         liEl.attr('data-country', previousSearchArray[k].country);
-        listHistory.append(liEl);
+        historyList.append(liEl);
     }
 }
-// City is added to a search history array
-// Need to be saved locally
-// delete button for search history
-
-// Cities in search history can be selected.
-// Once selected the same info can be viewed again.
-// Consider a delete button for search history
 
 init();
