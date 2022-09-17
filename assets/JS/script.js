@@ -162,7 +162,7 @@ async function nameConverter(cityName, cityState, cityCountry) {
 
     var limit = 1;
 
-    var requestUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + queryString + '&limit=' + limit + '&appid=' + APIkey
+    var requestUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + queryString + '&limit=' + limit + '&appid=fe7c4a49b2f70c76f7ca3f6d351a96ee'
     console.log(requestUrl);
     // Fetch longitude and Latitude
     await fetch(requestUrl, {
@@ -184,7 +184,8 @@ async function nameConverter(cityName, cityState, cityCountry) {
 // this will request the city info from the API using the long and lat and stores it in the current city object
 async function obtainCityInfoAPI() {
     // async functions
-    var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + cityLatitude + '&lon=' + cityLongitude + '&units=metric' + '&appid=' + APIkey;
+    var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + cityLatitude + '&lon=' + cityLongitude + '&units=metric' + '&appid=fe7c4a49b2f70c76f7ca3f6d351a96ee';
+
     await fetch(requestUrl, {
         credentials: 'same-origin'
 
@@ -352,13 +353,14 @@ function displayFutureCityInfo() {
 }
 
 // function to process the city weather 
-function processCityWeather() {
+function processtheCityWeather() {
     processCurrentWeather();
     processFutureWeather();
 }
 
 // Current weather
 function processCurrentWeather() {
+
     // Converts unix date
     var date = new Date(rawCityInfo.current.dt * 1000);
     currentCityInfo.date = date;
