@@ -13,6 +13,8 @@ var refresh = setInterval(function () {
 
 function init() {
     currentMomentDate();
+    loadData();
+    displaySearchHistory();
 };
 
 // API 
@@ -99,7 +101,7 @@ function searchByHistory(e) {
         search.country = cityCountry;
 
         // Object saved into search history array
-        searchHistroyArray.unshift(search);
+        previousSearchArray.unshift(search);
         saveData();
 
         renderAPI(cityName, cityState, cityCountry);
@@ -108,7 +110,7 @@ function searchByHistory(e) {
     // clear the search history 
 
     if (element.matches('button') === true) {
-        searchHistroyArray = [];
+        previousSearchArray = [];
         listHistory.empty();
         saveData();
     }
@@ -172,7 +174,7 @@ async function nameConverter(cityName, cityState, cityCountry) {
 // this will request the city info from the API using the long and lat and stores it in the current city object
 async function obtainCityInfoAPI() {
     // async functions
-    var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + cityLatitude + '&lon=' + cityLongitude + '&appid=' + APIkey;
+    var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + cityLatitude + '&lon=' + cityLongitude + '&units=metric' + '&appid=' + APIkey;
     await fetch(requestUrl, {
         credentials: 'same-origin'
 
@@ -200,7 +202,7 @@ function displayCurrentCityInfo() {
     currentWeatherEl.append('<h2 class="col-12" id="currentWeatherHeader">Current Weather</h2>');
 
 
-// Obtains currentCity object values
+    // Obtains currentCity object values
     var cityName = currentCityName;
     var cityDate = currentCityInfo.date;
     var icon = currentCityInfo.icon;
@@ -209,10 +211,10 @@ function displayCurrentCityInfo() {
     var wind = currentCityInfo.wind;
     var uvIndex = currentCityInfo.uv;
 
-    var month = new Intl.DateTimeFormat('en-US', {month: 'long'}).format(cityDate);
-    var month = new Intl.DateTimeFormat('en-US', {month: 'long'}).format(cityDate);
+    var month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(cityDate);
+    var month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(cityDate);
 
-    var lastNumber = day[day.length-1]
+    var lastNumber = day[day.length - 1]
     if (lastNumber === 1) {
         day += 'st';
     }
@@ -270,12 +272,148 @@ function displayCurrentCityInfo() {
     currentWeatherEl.append(citySubEl);
 }
 
-
-
-
-
 // data displayed for a 5-day forecast is the date, weather conditions icon, temp, windspeed and humidity
+function displayFutureCityInfo() {
+    // empty child elements
+    futureWeatherEl.empty();
+    //creates the header
+    futureWeatherEl.append('<h2 id="futureWeatherHeader" class="col-12">5-Day Forecast</h2>');
+    // Obtains FutureCityInfo object values
+    for (var k = 1; k < Object.keys(futureCityInfo).length + 1; k++) {
 
+        var day = 'day' + k;
+        var cityName = currentCityName;
+        var cityDate = futureCityInfo[day].date;
+        var icon = futureCityInfo[day].icon;
+        var tempHigh = futureCityInfo[day].tempHigh;
+        var tempLow = futureCityInfo[day].tempLow;
+        var humidity = futureCityInfo[day].humidity;
+        var wind = futureCityInfo[day].wind;
+    }
+
+    // adds ordinal to date
+    var month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(cityDate);
+    var day = new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(cityDate);
+
+    var lastNumber = day[day.length - 1]
+    if (lastNumber === 1) {
+        day += 'st';
+    }
+    else if (lastNumber === 2) {
+        day += 'nd';
+    }
+    else if (lastNumber === 4) {
+        day += 'rd';
+    }
+    else {
+        day += 'th';
+    }
+
+    cityDate = month + ' ' + day;
+
+    // Creates elements based off the values
+    var cityMainEl = $('<div class="futureCityMain"></div>');
+    var cityNameEl = $('<div><h2>' + cityName + '</h2></div>');
+    var cityDateEl = $('<div><h3>' + cityDate + '</h3></div>');
+    var iconEl = $('<div><img src=' + icon + '></div>');
+    // These elements need headers
+    var citySubEl = $('<div class="futureCitySub"></div>');
+    var tempEl = $('<div><h4>' + 'Temperature: ' + '</h4>' + '<p>High: ' + tempHigh + '</p><p>Low: ' + tempLow + '</p></div>');
+    var humidityEl = $('<div><h5>' + 'Humidity: ' + '</h5>' + '<p>' + humidity + '</p></div>');
+    var windEl = $('<div><h5>' + 'Wind Speed: ' + '</h5>' + '<p>' + wind + '</p></div>');
+
+    // Appends elements
+    var elementArr = [cityNameEl, cityDateEl, iconEl];
+    for (var i = 0; i < elementArr.length; i++) {
+        cityMainEl.append(elementArr[i]);
+    }
+
+    elementArr = [tempEl, humidityEl, windEl];
+    for (var i = 0; i < elementArr.length; i++) {
+        citySubEl.append(elementArr[i]);
+    }
+
+    var futureCityEl = $('<div class="futureCityCard"></div>');
+    futureCityEl.append(cityMainEl);
+    futureCityEl.append(citySubEl);
+
+    futureWeatherEl.append(futureCityEl);
+
+}
+
+// function to process the city weather 
+function processCityWeather() {
+    processCurrentWeather();
+    processFutureWeather();
+}
+
+// Current weather
+function processCurrentWeather() {
+    // Converts unix date
+    var date = new Date(rawCityInfo.current.dt * 1000);
+    currentCityInfo.date = date;
+
+    // Icon image representing current weather. Uses API icon code
+    var iconCode = rawCityInfo.current.weather[0].icon;
+    currentCityInfo.icon = 'http://openweathermap.org/img/w/' + iconCode + '.png';
+
+    // Humidity
+    var humidity = rawCityInfo.current.humidity;
+    currentCityInfo.humidity = humidity + '%';
+
+    // uvIndex
+    var uv = rawCityInfo.current.uvi;
+    currentCityInfo.uv = uv;
+    console.log('currrent city info: ', currentCityInfo);
+}
+// Future weather
+function processFutureWeather() {
+
+    // Start loop at 1 because 0 is current day's forecast.
+    for (var k = 1; k < 6; k++) {
+        // Creates day objects
+        var day = 'day' + k;
+        futureCityInfo[day] = {};
+
+        // Converts unix date
+        var date = new Date(rawCityInfo.daily[k].dt * 1000);
+        futureCityInfo[day].date = date;
+
+        // Icon image representing current weather. Uses API icon code
+        var iconCode = rawCityInfo.daily[k].weather[0].icon;
+        futureCityInfo[day].icon = 'http://openweathermap.org/img/w/' + iconCode + '.png';
+
+        // Humidity
+        var humidity = rawCityInfo.daily[k].humidity;
+        futureCityInfo[day].humidity = humidity + '%';
+    }
+
+    console.log('future city info: ', futureCityInfo);
+}
+// Save data locally from input
+function saveData() {
+    // Stores new data into the object
+    localStorage.setItem("citySearches", JSON.stringify(previousSearchArray));
+}
+
+// loads local data if present
+function loadData () {
+    // Stores new data into the object
+    var storedCityData = JSON.parse(localStorage.getItem("citySearches"));
+    if (storedCityData !== null) {
+        previousSearchArray = storedCityData;
+    }
+}
+
+// Displays search history
+function displaySearchHistory () {
+    for (var k = 0; k < previousSearchArray.length; k++) {
+        var liEl = $("<li>" + previousSearchArray[k].city + "</li>");
+        liEl.attr('data-state', previousSearchArray[k].state);
+        liEl.attr('data-country', previousSearchArray[k].country);
+        listHistory.append(liEl);
+    }
+}
 // City is added to a search history array
 // Need to be saved locally
 // delete button for search history

@@ -47,6 +47,13 @@ aside h4 + button{
   text-justify: center;
 }
 
+.custom-search-x {
+  height: 30px;
+    border-radius: 50% !important;
+    font-size: 90%;
+    padding-top: 2px
+}
+
 
 .custom-search-btn:hover {
   background-color: var(--c-lblue);
