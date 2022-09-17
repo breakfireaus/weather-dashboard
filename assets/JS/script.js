@@ -1,8 +1,25 @@
+var currentDateEl = $('#date-and-time');
+var currentDate;
+
+function currentMomentDate() {
+    currentDate = moment().format('LLLL');
+    currentDateEl.text(currentDate);
+};
+// Weather refreshes on a set Interval
+var refresh = setInterval(function () {
+    currentMomentDate();
+}, 1000);
+
+
+function init() {
+    currentMomentDate();
+};
 var APIkey = "fe7c4a49b2f70c76f7ca3f6d351a96ee";
 
-// add a favicon that changes based on the weather
 
-// Weather refreshes on a set Interval
+
+
+
 // Maybe add some autolocation...refresh the time and date
 
 // user can search for a City
@@ -24,3 +41,4 @@ var APIkey = "fe7c4a49b2f70c76f7ca3f6d351a96ee";
 // Once selected the same info can be viewed again.
 // Consider a delete button for search history
 
+init();

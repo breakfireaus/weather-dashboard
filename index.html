@@ -7,7 +7,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <!-- JS scripts: bootstrap -->
   <link rel="icon" type="image/x-icon" href="./assets/images/favicons/sun.ico">
-  <script src="jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="./assets/CSS/style.css" />
   <title>Weather Dashboard</title>
@@ -16,51 +15,61 @@
 <body>
   <header class="text-center">
     <!-- weather dashboard -->
-    <h1>Welcome to the Weather Dashboard</h1>
+    <h1 id="header-title">Welcome to the Weather Dashboard</h1>
     <!-- current date -->
     <p id="date-and-time"></p>
     <!-- city and current temp in current location -->
   </header>
 
   <main class="bg-transparent row justify-content-around ml-1">
-    
-    <section id="mainContent" class="col-6 mt-2 bg-transparent">
-    <!-- form to input city-->
 
-    <form class="bg-transparent">
-      <div class="form-group ">
-        <label>City</label>
-        <input type="text" class="form-control" id="cityfield" placeholder="Enter city here">
-      </div>
+    <section id="mainContent" class="col-8 mt-2 bg-transparent">
+      <!-- form to input city-->
 
-      <div class="form-group">
-        <label>State</label>
-        <input type="text" class="form-control" id="statefield" placeholder="Enter state here (if applicable)...">
-      </div>
+      <form class="bg-transparent">
+        <div class="form-group ">
+          <label>City</label>
+          <input type="text" class="form-control" id="cityfield" placeholder="Enter city here">
+        </div>
 
-      <div class="form-group">
-        <label>Country</label>
-        <input type="text" class="form-control" id="countryfield" placeholder="Enter country here">
-        <small id="cityHelp" class="form-text text-muted ">Your city search result will be saved in search history</small>
-      </div>
-      
-      <button type="submit" class="btn btn-primary custom-search-btn">Search</button>
+        <div class="form-group">
+          <label>State</label>
+          <input type="text" class="form-control" id="statefield" placeholder="Enter state here (if applicable)...">
+        </div>
 
-    </form>
-   
-    <!-- a space where the city will populate current and future weather information -->
-    <section id="currentweather"></section>
-    <section id="futureweather"></section>
-  </section>
-  <aside id="prevsearchhistory">
-  <h4 id="searchheader">Search History</h4>
-    <!-- history where previously searched cities populate on a sidebar -->
-    <!-- List of locations -->
-  </aside>
+        <div class="form-group">
+          <label>Country</label>
+          <input type="text" class="form-control" id="countryfield" placeholder="Enter country here">
+          <small id="cityHelp" class="form-text text-muted text-white">Your city search result will be saved in search
+            history</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary rounded-pill  custom-search-btn">Search</button>
+
+      </form>
+
+      <!-- a space where the city will populate current and future weather information -->
+      <section id="currentweather"></section>
+      <section id="futureweather"></section>
+    </section>
+
+
+
+    <aside class="col-3" id="prevsearchhistory">
+      <div class="mb-3 pb-2 d-flex justify-content-start"></div>
+      <h4 class="ml-2" id="searchheader">Search History</h4>
+      <!-- history where previously searched cities populate on a sidebar -->
+      <!-- List of locations -->
+      <button class="ml-2 rounded-pill  custom-search-btn">&#10060;</button>
+      <ul id="listHistory" class=""></ul>
+    </aside>
+
+
   </main>
-  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+  <footer class="text-center">Designed and coded by Matthew Younger-Chudnovsky © 2022</footer>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="./assets/JS/script.js"></script>
 </body>
 

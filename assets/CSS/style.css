@@ -10,6 +10,7 @@
   --c-dblue: #023047;
   --c-blue: #219ebc;
   --c-lblue: #8ecae6;
+  --topPadding: 50px;
 }
 
 * {
@@ -17,9 +18,107 @@
   color: var(--c-white);
 }
 
-body{
-  background-image: linear-gradient(-90deg, var(--c-dblue), var(--c-lblue) )}
+body {
+  background-image: linear-gradient(-90deg, var(--c-dblue), var(--c-lblue))
+}
 
-.custom-search-btn{
+main {
+  width: 100%;
+  padding-top: 20px;
+}
+
+header {
+  width: 100%;
+  border-bottom: 5px solid rgb(250, 203, 74);
+  border-radius: 0% 0% 70% 70%/ 0% 0% 75% 75%;
+  background-image: linear-gradient(rgb(238, 192, 40) 0%,
+      rgb(236, 216, 147) 100%);
+}
+
+
+#currentweather {
+  border: 5px solid black;
+  margin-top:20px;
+  border-radius: 20px;
+  background-color: aliceblue;
+}
+
+#currentWeatherHeader {
+  padding-top:20px;
+  text-align: center;
+  border-bottom: 2px solid black;
+  padding-bottom: 20px;
+}
+
+#currentCityHeader {
+  text-align: right;
+}
+
+#currentCityMain {
+  justify-content: space-around;
+  width:100%;
+}
+
+#currentCityMain div{
+  padding:20px;
+  text-align: center;
+}
+
+#currentCitySub {
+  width:100%;
+  justify-content: space-around;
+  padding:5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#futureweather {
+  border: 5px solid black;
+  border-radius: 20px;
+  background-color: aliceblue;
+  margin-top: 40px;
+}
+
+#futureWeatherHeader {
+  padding-top:20px;
+  text-align: center;
+  border-bottom: 2px solid black;
+  padding-bottom: 20px;
+}
+
+#prevsearchhistory {
+  background-color: rgba(69, 150, 187, 0.3);
+  padding-top: 10px;
+  margin-top: 0px;
+  border-radius: 20px;
+}
+
+#searchHeader {
+  border-bottom:2px solid black;
+}
+
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+
+
+
+.custom-search-btn {
   background-color: #023047;
+  border-color: var(--c-turquoise);
+  border-width: 5px;
+}
+
+
+.custom-search-btn:hover {
+  background-color: var(--c-lblue);
+  border-color: var(--c-turquoise);
+  color: var(--c-black);
 }
