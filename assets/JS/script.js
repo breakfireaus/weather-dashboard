@@ -14,16 +14,67 @@ var refresh = setInterval(function () {
 function init() {
     currentMomentDate();
 };
+
+// API 
 var APIkey = "fe7c4a49b2f70c76f7ca3f6d351a96ee";
+var rawCityInfo = {};
+var currentCityInfo = {};
+var previousSearchArray = [];
+
+// Latitude and Longitude from the api
+var cityLongitude = 0;
+var cityLatitude = 0;
+
+var aside = $('aside');
+var weatherFormEl = $('weather-Form');
+var cityInputEl = $('#cityfield');
+var stateInputEl = $('#statefield');
+var countryInputEl = $('#countryfield');
+var historyList = $('#historyList');
+var currentWeatherEl = $('currentWeather');
+var futureWeatherEl = $('futureWeather');
+var currentCityName = '';
+
+// user can search for a City also save data into search history
+function getUserInput(e) {
+    e.preventDefault();
+
+    var search ={};
+    if (cityInputEl.val() !== '') {
+        // stores the users search as an object
+        search.city = cityInputEl.val().toLowerCase();
+        search.state = stateInputEl.val().toUpperCase();
+        search.country = countryInputEl.val().toUpperCase();
+
+        // Capitilise first letter for the city
+        var arr = search.city.split('');
+        arr[0].toUpperCase();
+        search.city = arr.join('');
+
+        // Sets the global city name
+        currentCityName = search.city;
+
+        // object is then saved to the object
+        previousSearchArray.unshift(search);
+        saveData ();
+
+        // search renders into the li
+        var liEl = $("<li>" + search.city + "</li>");
+        liEl.attr('data-state', search.state);
+        liEl.attr('data-country', search.country);
+        historyList.prepend(liEl);
+        console.log(previousSearchArray);
+        renderAPI (search.city, search.state, search.country);
+    }
+    
+    cityInputEl.val('');
+    stateInputEl.val('');
+    countryInputEl.val('');
+}
+
+weatherFormEl.on('submit', getUserInput);
 
 
-
-
-
-// Maybe add some autolocation...refresh the time and date
-
-// user can search for a City
-// city can be added to search history
 // if clicked the same info can be viewed again
 
 // city results will display the current conditions and future conditions

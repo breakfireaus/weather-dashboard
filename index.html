@@ -26,7 +26,7 @@
     <section id="mainContent" class="col-8 mt-2 bg-transparent">
       <!-- form to input city-->
 
-      <form class="bg-transparent">
+      <form class="bg-transparent" id="weather-Form">
         <div class="form-group ">
           <label>City</label>
           <input type="text" class="form-control" id="cityfield" placeholder="Enter city here">
@@ -49,8 +49,8 @@
       </form>
 
       <!-- a space where the city will populate current and future weather information -->
-      <section id="currentweather"></section>
-      <section id="futureweather"></section>
+      <section id="currentWeather"></section>
+      <section id="futureWeather"></section>
     </section>
 
 
@@ -61,7 +61,7 @@
       <!-- history where previously searched cities populate on a sidebar -->
       <!-- List of locations -->
       <button class="ml-2 rounded-pill  custom-search-btn">&#10060;</button>
-      <ul id="listHistory" class=""></ul>
+      <ul id="historyList" class=""></ul>
     </aside>
 
 
