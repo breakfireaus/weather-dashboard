@@ -34,6 +34,25 @@ header {
       rgb(236, 216, 147) 100%);
 }
 
+aside h4 + button{
+  display: flex;
+}
+
+
+.custom-search-btn {
+  background-color: #023047;
+  border-color: var(--c-turquoise);
+  border-width: 2px;
+  text-align: center;
+  text-justify: center;
+}
+
+
+.custom-search-btn:hover {
+  background-color: var(--c-lblue);
+  border-color: var(--c-turquoise);
+  color: var(--c-black);
+}
 
 #currentweather {
   border: 5px solid black;
@@ -109,15 +128,5 @@ footer {
 
 
 
-.custom-search-btn {
-  background-color: #023047;
-  border-color: var(--c-turquoise);
-  border-width: 5px;
-}
 
 
-.custom-search-btn:hover {
-  background-color: var(--c-lblue);
-  border-color: var(--c-turquoise);
-  color: var(--c-black);
-}

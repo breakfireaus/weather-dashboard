@@ -272,8 +272,10 @@ function displayCurrentCityInfo() {
 
 
 
+
+
 // data displayed for a 5-day forecast is the date, weather conditions icon, temp, windspeed and humidity
-    
+
 // City is added to a search history array
 // Need to be saved locally
 // delete button for search history
