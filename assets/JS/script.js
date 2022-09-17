@@ -35,11 +35,11 @@ var currentWeatherEl = $('currentWeather');
 var futureWeatherEl = $('futureWeather');
 var currentCityName = '';
 
-// user can search for a City also save data into search history
+// obtain data from the user input can search for a City also save data into search history
 function getUserInput(e) {
     e.preventDefault();
 
-    var search ={};
+    var search = {};
     if (cityInputEl.val() !== '') {
         // stores the users search as an object
         search.city = cityInputEl.val().toLowerCase();
@@ -56,7 +56,7 @@ function getUserInput(e) {
 
         // object is then saved to the object
         previousSearchArray.unshift(search);
-        saveData ();
+        saveData();
 
         // search renders into the li
         var liEl = $("<li>" + search.city + "</li>");
@@ -64,9 +64,9 @@ function getUserInput(e) {
         liEl.attr('data-country', search.country);
         historyList.prepend(liEl);
         console.log(previousSearchArray);
-        renderAPI (search.city, search.state, search.country);
+        renderAPI(search.city, search.state, search.country);
     }
-    
+
     cityInputEl.val('');
     stateInputEl.val('');
     countryInputEl.val('');
@@ -74,8 +74,49 @@ function getUserInput(e) {
 
 weatherFormEl.on('submit', getUserInput);
 
+// obtain data from search history Li Element
+function searchByHistory(e) {
+    e.preventDefault();
+    var element = e.target;
+    if (element.matches("li") === true) {
+        var cityName = element.textContent;
+        var cityState = element.getAttribute("data-state");
+        var cityCountry = element.getAttribute("data-country");
 
-// if clicked the same info can be viewed again
+        //sets global variable of the current city
+        currentCityName = element.textContent;
+
+        //Adds search history to list
+        var liEl = $("<li>" + cityName + "</li>");
+        liEl.attr('data-state', cityState);
+        liEl.attr('data-country', cityCountry);
+        historyList.prepend(liEl);
+
+        //saves history list to local storage
+        var search = {};
+        search.city = cityName;
+        search.state = cityState;
+        search.country = cityCountry;
+
+        // Object saved into search history array
+        searchHistroyArray.unshift(search);
+        saveData();
+
+        renderAPI(cityName, cityState, cityCountry);
+    }
+
+    // clear the search history 
+
+    if (element.matches('button') === true) {
+        searchHistroyArray = [];
+        listHistory.empty();
+        saveData();
+    }
+}
+
+aside.on("click", searchByHistory)
+
+
 
 // city results will display the current conditions and future conditions
 
