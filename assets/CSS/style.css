@@ -15,7 +15,6 @@
 
 * {
   font-family: Arial, Helvetica, sans-serif;
-  color: var(--c-white);
 }
 
 body {
@@ -28,9 +27,9 @@ main {
 }
 
 header {
+  color: var(--c-black);
   width: 100%;
   border-bottom: 5px solid rgb(250, 203, 74);
-  border-radius: 0% 0% 70% 70%/ 0% 0% 75% 75%;
   background-image: linear-gradient(rgb(238, 192, 40) 0%,
       rgb(236, 216, 147) 100%);
 }
