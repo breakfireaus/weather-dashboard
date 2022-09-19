@@ -330,7 +330,7 @@ function displayFutureCityInfo() {
         // Creates elements based off the values
         var cityMainEl = $('<div class="futureCityMain"></div>');
         var cityNameEl = $('<div><h2>' + cityName + '</h2></div>');
-        var cityDateEl = $('<div><h3>' + cityDate + '</h3></div>');
+        var cityDateEl = $('<div><h6>' + cityDate + '</h6></div>');
         var iconEl = $('<div><img src=' + icon + '></div>');
         // These elements need headers
         var citySubEl = $('<div class="futureCitySub"></div>');
