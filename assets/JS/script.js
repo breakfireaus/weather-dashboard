@@ -21,6 +21,7 @@ function init() {
 var APIkey = "fe7c4a49b2f70c76f7ca3f6d351a96ee";
 var rawCityInfo = {};
 var currentCityInfo = {};
+var futureCityInfo = {};
 var previousSearchArray = [];
 
 // Latitude and Longitude from the api
@@ -199,7 +200,7 @@ async function obtainCityInfoAPI() {
 }
 
 // Displays city info for current and future
-function displayCityInfo() {
+function displaytheCityInfo() {
     displayCurrentCityInfo();
     displayFutureCityInfo();
 }
@@ -225,7 +226,7 @@ function displayCurrentCityInfo() {
     var month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(cityDate);
     var month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(cityDate);
 
-    var lastNumber = day[day.length - 1]
+    var lastNumber = day[day.length-1]
     if (lastNumber === 1) {
         day += 'st';
     }
