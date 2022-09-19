@@ -324,8 +324,11 @@ function displayFutureCityInfo() {
             console.log(elementArr[i])
             citySubEl.append(elementArr[i]);
         }
+        var month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(cityDate);
+        day = new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(cityDate);
+    
 
-    }
+    
 
     // adds ordinal to date
     var month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(cityDate);
@@ -356,7 +359,7 @@ function displayFutureCityInfo() {
     futureCityEl.append(citySubEl);
 
     futureWeatherEl.append(futureCityEl);
-
+    }
 }
 
 // function to process the city weather 
