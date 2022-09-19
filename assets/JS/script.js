@@ -186,7 +186,7 @@ async function nameConverter(cityName, cityState, cityCountry) {
 // this will request the city info from the API using the long and lat and stores it in the current city object
 async function obtainCityInfoAPI() {
     // async functions
-    var requestUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat=' + cityLatitude + '&lon=' + cityLongitude + '&units=metric' + '&appid=fe7c4a49b2f70c76f7ca3f6d351a96ee';
+    var requestUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat=' + cityLatitude + '&lon=' + cityLongitude + '&units=imperial' + '&appid=fe7c4a49b2f70c76f7ca3f6d351a96ee';
 
     await fetch(requestUrl, {
         credentials: 'same-origin'
@@ -225,8 +225,8 @@ function displayCurrentCityInfo() {
     var uvIndex = currentCityInfo.uv;
 
     var month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(cityDate);
-    var month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(cityDate);
-
+    var day = new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(cityDate);
+    
     var lastNumber = day[day.length-1]
     if (lastNumber === 1) {
         day += 'st';
@@ -251,9 +251,9 @@ function displayCurrentCityInfo() {
 
     // element headers
     var citySubEl = $('<div id="currentCitySub" class="row"></div>');
-    var tempEl = $('<div class=""><h4>' + 'Temperature: ' + '</h4>' + '<p>' + temp + '°C' + '</p></div>');
+    var tempEl = $('<div class=""><h4>' + 'Temperature: ' + '</h4>' + '<p>' + temp + '°F' + '</p></div>');
     var humidityEl = $('<div class=""><h4>' + 'Humidity: ' + '</h4>' + '<p>' + humidity + '</p></div>');
-    var windEl = $('<div class=""><h4>' + 'Wind Speed: ' + '</h4>' + '<p>' + wind + ' KPH' + '</p></div>');
+    var windEl = $('<div class=""><h4>' + 'Wind Speed: ' + '</h4>' + '<p>' + wind + ' MPH' + '</p></div>');
 
     // This element also needs additional paramenters
     var uvClass = '';
