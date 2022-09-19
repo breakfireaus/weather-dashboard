@@ -112,11 +112,11 @@ function searchByHistory(event) {
         renderAPI(cityName, cityState, cityCountry);
 
         // Clears search history list
-    if (element.matches('button') === true) {
-        searchHistroyArray = [];
-        historyList.empty();
-        saveData();
-    }
+        if (element.matches('button') === true) {
+            searchHistroyArray = [];
+            historyList.empty();
+            saveData();
+        }
     }
 
     // clear the search history 
@@ -134,9 +134,9 @@ aside.on("click", searchByHistory)
 // city results will display the current conditions and future conditions
 
 // Render the API info - Forces all async functions to sync *Must be labeled an a sync function with an async action such as fetch*
-async function renderAPI (cityName, cityState, cityCountry) {
+async function renderAPI(cityName, cityState, cityCountry) {
     // Async functions
-    await nameConverter (cityName, cityState, cityCountry);
+    await nameConverter(cityName, cityState, cityCountry);
     await obtainCityInfoAPI();
 
     //after these function occur for the sync
@@ -226,8 +226,8 @@ function displayCurrentCityInfo() {
 
     var month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(cityDate);
     var day = new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(cityDate);
-    
-    var lastNumber = day[day.length-1]
+
+    var lastNumber = day[day.length - 1]
     if (lastNumber === 1) {
         day += 'st';
     }
@@ -302,6 +302,29 @@ function displayFutureCityInfo() {
         var tempLow = futureCityInfo[day].tempLow;
         var humidity = futureCityInfo[day].humidity;
         var wind = futureCityInfo[day].wind;
+
+        // Creates elements based off the values
+        var cityMainEl = $('<div class="futureCityMain"></div>');
+        var cityNameEl = $('<div><h2>' + cityName + '</h2></div>');
+        var cityDateEl = $('<div><h3>' + cityDate + '</h3></div>');
+        var iconEl = $('<div><img src=' + icon + '></div>');
+        // These elements need headers
+        var citySubEl = $('<div class="futureCitySub"></div>');
+        var tempEl = $('<div><h4>' + 'Temperature: ' + '</h4>' + '<p>High: ' + tempHigh + '</p><p>Low: ' + tempLow + '</p></div>');
+        var humidityEl = $('<div><h5>' + 'Humidity: ' + '</h5>' + '<p>' + humidity + '</p></div>');
+        var windEl = $('<div><h5>' + 'Wind Speed: ' + '</h5>' + '<p>' + wind + '</p></div>');
+        // Appends elements
+        var elementArr = [cityNameEl, cityDateEl, iconEl];
+        for (var i = 0; i < elementArr.length; i++) {
+            cityMainEl.append(elementArr[i]);
+        }
+
+        elementArr = [tempEl, humidityEl, windEl];
+        for (var i = 0; i < elementArr.length; i++) {
+            console.log(elementArr[i])
+            citySubEl.append(elementArr[i]);
+        }
+
     }
 
     // adds ordinal to date
@@ -324,28 +347,9 @@ function displayFutureCityInfo() {
 
     cityDate = month + ' ' + day;
 
-    // Creates elements based off the values
-    var cityMainEl = $('<div class="futureCityMain"></div>');
-    var cityNameEl = $('<div><h2>' + cityName + '</h2></div>');
-    var cityDateEl = $('<div><h3>' + cityDate + '</h3></div>');
-    var iconEl = $('<div><img src=' + icon + '></div>');
-    // These elements need headers
-    var citySubEl = $('<div class="futureCitySub"></div>');
-    var tempEl = $('<div><h4>' + 'Temperature: ' + '</h4>' + '<p>High: ' + tempHigh + '</p><p>Low: ' + tempLow + '</p></div>');
-    var humidityEl = $('<div><h5>' + 'Humidity: ' + '</h5>' + '<p>' + humidity + '</p></div>');
-    var windEl = $('<div><h5>' + 'Wind Speed: ' + '</h5>' + '<p>' + wind + '</p></div>');
 
-    // Appends elements
-    var elementArr = [cityNameEl, cityDateEl, iconEl];
-    for (var i = 0; i < elementArr.length; i++) {
-        cityMainEl.append(elementArr[i]);
-    }
 
-    elementArr = [tempEl, humidityEl, windEl];
-    for (var i = 0; i < elementArr.length; i++) {
-    console.log(elementArr[i])
-        citySubEl.append(elementArr[i]);
-    }
+
 
     var futureCityEl = $('<div class="futureCityCard"></div>');
     futureCityEl.append(cityMainEl);
@@ -420,7 +424,7 @@ function saveData() {
 }
 
 // loads local data if present
-function loadData () {
+function loadData() {
     // Stores new data into the object
     var storedCityData = JSON.parse(localStorage.getItem("citySearches"));
     if (storedCityData !== null) {
@@ -429,7 +433,7 @@ function loadData () {
 }
 
 // Displays search history
-function displaySearchHistory () {
+function displaySearchHistory() {
     for (var k = 0; k < previousSearchArray.length; k++) {
         var liEl = $("<li>" + previousSearchArray[k].city + "</li>");
         liEl.attr('data-state', previousSearchArray[k].state);
