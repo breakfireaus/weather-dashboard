@@ -53,8 +53,9 @@ function getUserInput(e) {
 
         // Capitilise first letter for the city
         var arr = search.city.split('');
-        arr[0].toUpperCase();
+        arr[0] = arr[0].toUpperCase();
         search.city = arr.join('');
+        console.log(search.city);
 
         // Sets the global city name
         currentCityName = search.city;
@@ -303,6 +304,29 @@ function displayFutureCityInfo() {
         var humidity = futureCityInfo[day].humidity;
         var wind = futureCityInfo[day].wind;
 
+
+        var month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(cityDate);
+        day = new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(cityDate);
+        var dayLong = new Intl.DateTimeFormat('en-US', {weekday: 'long' }).format(cityDate);
+
+
+        var lastNumber = day[day.length - 1]
+        if (lastNumber === 1) {
+            day += 'st';
+        }
+        else if (lastNumber === 2) {
+            day += 'nd';
+        }
+        else if (lastNumber === 4) {
+            day += 'rd';
+        }
+        else {
+            day += '';
+        }
+
+        cityDate = dayLong + ' ' + month + ' ' + day;
+        
+
         // Creates elements based off the values
         var cityMainEl = $('<div class="futureCityMain"></div>');
         var cityNameEl = $('<div><h2>' + cityName + '</h2></div>');
@@ -324,35 +348,7 @@ function displayFutureCityInfo() {
             console.log(elementArr[i])
             citySubEl.append(elementArr[i]);
         }
-        var month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(cityDate);
-        day = new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(cityDate);
     
-
-    
-
-    // adds ordinal to date
-    var month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(cityDate);
-    day = new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(cityDate);
-
-    var lastNumber = day[day.length - 1]
-    if (lastNumber === 1) {
-        day += 'st';
-    }
-    else if (lastNumber === 2) {
-        day += 'nd';
-    }
-    else if (lastNumber === 4) {
-        day += 'rd';
-    }
-    else {
-        day += '';
-    }
-
-    cityDate = month + ' ' + day;
-
-
-
-
 
     var futureCityEl = $('<div class="futureCityCard"></div>');
     futureCityEl.append(cityMainEl);
