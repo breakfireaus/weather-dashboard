@@ -67,7 +67,8 @@ li {
   height: 30px;
   border-radius: 50% !important;
   font-size: 90%;
-  padding-top: 2px
+  padding-top: 2px;
+  text-align: end;
 }
 
 
@@ -87,7 +88,8 @@ li {
 #currentWeatherHeader {
   padding-top: 20px;
   text-align: center;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--c-white);
+  border-radius: 20px;
   padding-bottom: 20px;
   color: var(--c-white);
   background-image: linear-gradient(rgb(238, 192, 40) 0%,
