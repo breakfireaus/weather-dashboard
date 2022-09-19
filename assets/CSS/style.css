@@ -77,8 +77,8 @@ li {
   color: var(--c-black);
 }
 
-#currentweather {
-  border: 5px solid black;
+#currentWeather {
+  border: 5px solid var(--c-white);
   margin-top: 20px;
   border-radius: 20px;
   background-color: rgb(243, 229, 171);
