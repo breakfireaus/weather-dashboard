@@ -38,6 +38,21 @@ aside h4 + button{
   display: flex;
 }
 
+#action-submit-city{
+    margin-bottom: 20px;
+}
+
+
+li{
+  list-style: none;
+  text-align: center;
+  margin:5px 0px ;
+  border: #000000;
+  background-image: linear-gradient(rgb(238, 192, 40) 0%,
+  rgb(236, 216, 147) 100%);;
+  border-radius: 50px;
+
+}
 
 .custom-search-btn {
   background-color: #023047;
@@ -73,10 +88,14 @@ aside h4 + button{
   text-align: center;
   border-bottom: 2px solid black;
   padding-bottom: 20px;
+  color: var(--c-white);
+  background-image: linear-gradient(rgb(238, 192, 40) 0%,
+  rgb(236, 216, 147) 100%);;
 }
 
 #currentCityHeader {
   text-align: right;
+ 
 }
 
 #currentCityMain {
@@ -107,7 +126,12 @@ aside h4 + button{
 #futureWeatherHeader {
   padding-top:20px;
   text-align: center;
-  border-bottom: 2px solid black;
+  border-top: 2px solid var(--c-white);
+  border-bottom: 2px solid var(--c-white);
+  color: var(--c-white);
+  background-image: linear-gradient(rgb(238, 192, 40) 0%,
+  rgb(236, 216, 147) 100%);;
+
   padding-bottom: 20px;
 }
 
@@ -121,7 +145,17 @@ aside h4 + button{
 #searchHeader {
   border-bottom:2px solid black;
 }
+/* UV output */
+.uv-low {
+  color:var(--c-green);}
 
+.uv-mod {
+  color: #d8c626;
+}
+
+.uv-high {
+  color:(--c-red);
+}
 
 footer {
   position: relative;
