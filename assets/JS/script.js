@@ -1,5 +1,6 @@
 var currentDateEl = $('#date-and-time');
 var currentDate;
+var day;
 
 function currentMomentDate() {
     currentDate = moment().format('LLLL');
@@ -201,8 +202,8 @@ async function obtainCityInfoAPI() {
 
 // Displays city info for current and future
 function displaytheCityInfo() {
-    displayCurrentCityInfo();
     displayFutureCityInfo();
+    displayCurrentCityInfo();
 }
 
 // display current city name, the date, an icon that represents the weather conditions, 
@@ -250,9 +251,9 @@ function displayCurrentCityInfo() {
 
     // element headers
     var citySubEl = $('<div id="currentCitySub" class="row"></div>');
-    var tempEl = $('<div class=""><h4>' + 'Temperature: ' + '</h4>' + '<p>' + temp + '</p></div>');
+    var tempEl = $('<div class=""><h4>' + 'Temperature: ' + '</h4>' + '<p>' + temp + '°C' + '</p></div>');
     var humidityEl = $('<div class=""><h4>' + 'Humidity: ' + '</h4>' + '<p>' + humidity + '</p></div>');
-    var windEl = $('<div class=""><h4>' + 'Wind Speed: ' + '</h4>' + '<p>' + wind + '</p></div>');
+    var windEl = $('<div class=""><h4>' + 'Wind Speed: ' + '</h4>' + '<p>' + wind + ' KPH' + '</p></div>');
 
     // This element also needs additional paramenters
     var uvClass = '';
@@ -293,7 +294,7 @@ function displayFutureCityInfo() {
     // Obtains FutureCityInfo object values
     for (var k = 1; k < Object.keys(futureCityInfo).length + 1; k++) {
 
-        var day = 'day' + k;
+        day = 'day' + k;
         var cityName = currentCityName;
         var cityDate = futureCityInfo[day].date;
         var icon = futureCityInfo[day].icon;
@@ -305,7 +306,7 @@ function displayFutureCityInfo() {
 
     // adds ordinal to date
     var month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(cityDate);
-    var day = new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(cityDate);
+    day = new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(cityDate);
 
     var lastNumber = day[day.length - 1]
     if (lastNumber === 1) {
@@ -318,7 +319,7 @@ function displayFutureCityInfo() {
         day += 'rd';
     }
     else {
-        day += 'th';
+        day += '';
     }
 
     cityDate = month + ' ' + day;
@@ -342,6 +343,7 @@ function displayFutureCityInfo() {
 
     elementArr = [tempEl, humidityEl, windEl];
     for (var i = 0; i < elementArr.length; i++) {
+    console.log(elementArr[i])
         citySubEl.append(elementArr[i]);
     }
 
@@ -379,6 +381,13 @@ function processCurrentWeather() {
     var uv = rawCityInfo.current.uvi;
     currentCityInfo.uv = uv;
     console.log('currrent city info: ', currentCityInfo);
+
+    var wind = rawCityInfo.current.wind_speed;
+    currentCityInfo.wind = wind;
+
+    var temp = rawCityInfo.current.temp;
+    currentCityInfo.temp = temp;
+
 }
 // Future weather
 function processFutureWeather() {
