@@ -184,7 +184,7 @@ async function nameConverter(cityName, cityState, cityCountry) {
 // this will request the city info from the API using the long and lat and stores it in the current city object
 async function obtainCityInfoAPI() {
     // async functions
-    var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + cityLatitude + '&lon=' + cityLongitude + '&units=metric' + '&appid=fe7c4a49b2f70c76f7ca3f6d351a96ee';
+    var requestUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat=' + cityLatitude + '&lon=' + cityLongitude + '&units=metric' + '&appid=fe7c4a49b2f70c76f7ca3f6d351a96ee';
 
     await fetch(requestUrl, {
         credentials: 'same-origin'
@@ -366,6 +366,7 @@ function processCurrentWeather() {
     currentCityInfo.date = date;
 
     // Icon image representing current weather. Uses API icon code
+    console.log(rawCityInfo)
     var iconCode = rawCityInfo.current.weather[0].icon;
     currentCityInfo.icon = 'http://openweathermap.org/img/w/' + iconCode + '.png';
 
