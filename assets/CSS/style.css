@@ -34,22 +34,23 @@ header {
       rgb(236, 216, 147) 100%);
 }
 
-aside h4 + button{
+aside h4+button {
   display: flex;
 }
 
-#action-submit-city{
-    margin-bottom: 20px;
+#action-submit-city {
+  margin-bottom: 20px;
 }
 
 
-li{
+li {
   list-style: none;
   text-align: center;
-  margin:5px 0px ;
+  margin: 5px 0px;
   border: #000000;
   background-image: linear-gradient(rgb(238, 192, 40) 0%,
-  rgb(236, 216, 147) 100%);;
+      rgb(236, 216, 147) 100%);
+  ;
   border-radius: 50px;
 
 }
@@ -64,9 +65,9 @@ li{
 
 .custom-search-x {
   height: 30px;
-    border-radius: 50% !important;
-    font-size: 90%;
-    padding-top: 2px
+  border-radius: 50% !important;
+  font-size: 90%;
+  padding-top: 2px
 }
 
 
@@ -78,59 +79,68 @@ li{
 
 #currentweather {
   border: 5px solid black;
-  margin-top:20px;
+  margin-top: 20px;
   border-radius: 20px;
-  background-color: aliceblue;
+  background-color: rgb(243, 229, 171);
 }
 
 #currentWeatherHeader {
-  padding-top:20px;
+  padding-top: 20px;
   text-align: center;
   border-bottom: 2px solid black;
   padding-bottom: 20px;
   color: var(--c-white);
   background-image: linear-gradient(rgb(238, 192, 40) 0%,
-  rgb(236, 216, 147) 100%);;
+      rgb(236, 216, 147) 100%);
+  ;
 }
 
 #currentCityHeader {
   text-align: right;
- 
+
 }
 
 #currentCityMain {
   justify-content: space-around;
-  width:100%;
+  width: 100%;
+  background-color: rgb(243, 229, 171)
 }
 
-#currentCityMain div{
-  padding:20px;
+#currentCityMain div {
+  padding: 20px;
   text-align: center;
 }
 
 #currentCitySub {
-  width:100%;
+  width: 100%;
   justify-content: space-around;
-  padding:5px;
+  padding: 5px;
   margin-left: 10px;
   margin-right: 10px;
+  background-color: rgb(243, 229, 171)
 }
 
-#futureweather {
-  border: 5px solid black;
-  border-radius: 20px;
-  background-color: aliceblue;
+
+#futureWeather {
+  margin-top: 5px;
+  border: 5px solid var(--c-white);
+
+  background-color: rgb(243, 229, 171);
   margin-top: 40px;
+  border-top: none !important;
+  border-radius: 20px;
 }
 
 #futureWeatherHeader {
-  padding-top:20px;
+  border-radius: 20px;
+  padding-top: 20px;
   text-align: center;
   border-top: 2px solid var(--c-white);
   border-bottom: 2px solid var(--c-white);
   color: var(--c-white);
   background-image: linear-gradient(rgb(238, 192, 40) 0%,
-  rgb(236, 216, 147) 100%);;
+      rgb(236, 216, 147) 100%);
+  ;
 
   padding-bottom: 20px;
 }
@@ -142,19 +152,33 @@ li{
   border-radius: 20px;
 }
 
+
+
+
 #searchHeader {
-  border-bottom:2px solid black;
+  border-bottom: 2px solid black;
 }
+
 /* UV output */
 .uv-low {
-  color:var(--c-green);}
+  color: var(--c-green);
+  background-color: #000000;
+}
 
 .uv-mod {
   color: #d8c626;
+  background-color: #000000;
+  margin: 2px;
+  padding-right: 4.5px;
+  padding-top: 4.5px;
+  padding-bottom: 4.5px;
 }
 
 .uv-high {
-  color:(--c-red);
+  color: (--c-red);
+  background-color: #000000;
+  margin: 2px;
+  
 }
 
 footer {
@@ -165,9 +189,3 @@ footer {
   margin-bottom: 50px;
   margin-top: 50px;
 }
-
-
-
-
-
-

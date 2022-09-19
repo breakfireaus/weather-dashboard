@@ -415,7 +415,15 @@ function processFutureWeather() {
         var humidity = rawCityInfo.daily[k].humidity;
         futureCityInfo[day].humidity = humidity + '%';
 
-        
+        var temphigh = rawCityInfo.daily[k].temp.max
+        futureCityInfo[day].tempHigh = temphigh + '°C'
+
+        var tempLow = rawCityInfo.daily[k].temp.min
+        futureCityInfo[day].tempLow = tempLow + '°C'
+
+        var wind = rawCityInfo.daily[k].wind_speed
+        futureCityInfo[day].wind = wind + 'KPH'
+
     }
 
     console.log('future city info: ', futureCityInfo);
