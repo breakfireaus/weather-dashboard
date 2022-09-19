@@ -392,6 +392,8 @@ function processCurrentWeather() {
     var temp = rawCityInfo.current.temp;
     currentCityInfo.temp = temp;
 
+    
+
 }
 // Future weather
 function processFutureWeather() {
@@ -413,6 +415,8 @@ function processFutureWeather() {
         // Humidity
         var humidity = rawCityInfo.daily[k].humidity;
         futureCityInfo[day].humidity = humidity + '%';
+
+        
     }
 
     console.log('future city info: ', futureCityInfo);
