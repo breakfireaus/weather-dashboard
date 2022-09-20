@@ -168,24 +168,17 @@ async function nameConverter(cityName, cityState, cityCountry) {
     var requestUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + queryString + '&limit=' + limit + '&appid=' + APIkey;
     console.log(requestUrl);
     // Fetch longitude and Latitude
-   var response = await fetch(requestUrl, {
+    var response = await fetch(requestUrl, {
         credentials: 'same-origin'
     })
 
-var data = await response.json();
-for (var i = 0; i < data.length; i++) {
-    cityLongitude = data[i].lon;
-    cityLatitude = data[i].lat;
-}
-    
-         /* .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) { 
-            //loop over the fech response. right now the array is one item but it may be scaled
-            //this assigns the longitude and latitude for the city
-            
-        }) */
+    var data = await response.json();
+    for (var i = 0; i < data.length; i++) {
+        cityLongitude = data[i].lon;
+        cityLatitude = data[i].lat;
+    }
+
+
 }
 
 // this will request the city info from the API using the long and lat and stores it in the current city object
@@ -197,12 +190,12 @@ async function obtainCityInfoAPI() {
         credentials: 'same-origin'
     })
 
-var data = await response.json();
+    var data = await response.json();
 
     rawCityInfo = data;
 
-    
-      
+
+
 }
 
 // Displays city info for current and future
@@ -311,7 +304,7 @@ function displayFutureCityInfo() {
 
         var month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(cityDate);
         day = new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(cityDate);
-        var dayLong = new Intl.DateTimeFormat('en-US', {weekday: 'long' }).format(cityDate);
+        var dayLong = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(cityDate);
 
 
         var lastNumber = day[day.length - 1]
@@ -329,7 +322,7 @@ function displayFutureCityInfo() {
         }
 
         cityDate = dayLong + ' ' + month + ' ' + day;
-        
+
 
         // Creates elements based off the values
         var cityMainEl = $('<div class="futureCityMain"></div>');
@@ -352,13 +345,13 @@ function displayFutureCityInfo() {
             console.log(elementArr[i])
             citySubEl.append(elementArr[i]);
         }
-    
 
-    var futureCityEl = $('<div class="futureCityCard"></div>');
-    futureCityEl.append(cityMainEl);
-    futureCityEl.append(citySubEl);
 
-    futureWeatherEl.append(futureCityEl);
+        var futureCityEl = $('<div class="futureCityCard"></div>');
+        futureCityEl.append(cityMainEl);
+        futureCityEl.append(citySubEl);
+
+        futureWeatherEl.append(futureCityEl);
     }
 }
 
@@ -395,7 +388,7 @@ function processCurrentWeather() {
     var temp = rawCityInfo.current.temp;
     currentCityInfo.temp = temp;
 
-    
+
 
 }
 // Future weather
