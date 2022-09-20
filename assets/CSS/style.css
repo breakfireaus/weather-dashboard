@@ -63,6 +63,11 @@ li {
   text-justify: center;
 }
 
+#cityHelp{
+  color: var(--c-white);
+}
+
+
 .custom-search-x {
   height: 30px;
   border-radius: 50% !important;
@@ -70,6 +75,7 @@ li {
   padding-top: 2px;
   text-align: end;
 }
+
 
 
 .custom-search-btn:hover {
