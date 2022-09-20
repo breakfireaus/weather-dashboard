@@ -178,6 +178,9 @@ li {
 .uv-low {
   color: var(--c-green);
   background-color: #000000;
+  padding-right: 4.5px;
+  padding-top: 4.5px;
+  padding-bottom: 4.5px;
 }
 
 .uv-mod {
@@ -193,6 +196,9 @@ li {
   color: (--c-red);
   background-color: #000000;
   margin: 2px;
+  padding-right: 4.5px;
+  padding-top: 4.5px;
+  padding-bottom: 4.5px;
   
 }
 
