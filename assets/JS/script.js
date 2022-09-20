@@ -168,20 +168,24 @@ async function nameConverter(cityName, cityState, cityCountry) {
     var requestUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + queryString + '&limit=' + limit + '&appid=' + APIkey;
     console.log(requestUrl);
     // Fetch longitude and Latitude
-    await fetch(requestUrl, {
+   var response = await fetch(requestUrl, {
         credentials: 'same-origin'
     })
-        .then(function (response) {
+
+var data = await response.json();
+for (var i = 0; i < data.length; i++) {
+    cityLongitude = data[i].lon;
+    cityLatitude = data[i].lat;
+}
+    
+         /* .then(function (response) {
             return response.json();
         })
-        .then(function (data) {
+        .then(function (data) { 
             //loop over the fech response. right now the array is one item but it may be scaled
             //this assigns the longitude and latitude for the city
-            for (var i = 0; i < data.length; i++) {
-                cityLongitude = data[i].lon;
-                cityLatitude = data[i].lat;
-            }
-        })
+            
+        }) */
 }
 
 // this will request the city info from the API using the long and lat and stores it in the current city object
@@ -189,16 +193,16 @@ async function obtainCityInfoAPI() {
     // async functions
     var requestUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat=' + cityLatitude + '&lon=' + cityLongitude + '&units=metric' + '&appid=' + APIkey
 
-    await fetch(requestUrl, {
+    var response = await fetch(requestUrl, {
         credentials: 'same-origin'
-
     })
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            rawCityInfo = data;
-        });
+
+var data = await response.json();
+
+    rawCityInfo = data;
+
+    
+      
 }
 
 // Displays city info for current and future
