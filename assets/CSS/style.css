@@ -42,11 +42,14 @@ aside h4+button {
   margin-bottom: 20px;
 }
 
+#historyList{
+padding-left: 0px;
+}
 
 li {
   list-style: none;
   text-align: center;
-  margin: 5px 0px;
+  margin: 5px 10px;
   border: #000000;
   background-image: linear-gradient(rgb(238, 192, 40) 0%,
       rgb(236, 216, 147) 100%);
@@ -156,8 +159,10 @@ li {
 #prevsearchhistory {
   background-color: rgba(69, 150, 187, 0.3);
   padding-top: 10px;
-  margin-top: 0px;
-  margin-left: 20px;
+  margin-top: 10px;
+
+
+  
   border-radius: 20px;
 }
 
