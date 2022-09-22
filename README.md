@@ -1,6 +1,8 @@
-# Title
+# Weather Dashboard
 
 ## Description
+
+A Weather dashboard that displays the current weather and gives you a 5 day forecast
 
 
 
@@ -14,6 +16,15 @@
 ## Installation
 
 
+## Technology Used
+
+- Web api
+- bootstrap
+- Jquery
+- Webapi
+- JS
+- HTML
+- Server Side api
 
 ## Usage
 - Main Page
@@ -22,7 +33,11 @@
 ## Credits
 
 - Ask BCS team @ Monash university Bootcamp
-- Tutor for getting me on track
+- Tutor
+- W3 Schools
+- Jquery documentation
+- MDN web docs
+- https://openweathermap.org/api
 
 ## License
 
