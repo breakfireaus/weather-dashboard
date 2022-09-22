@@ -226,14 +226,19 @@ function displayCurrentCityInfo() {
     var day = new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(cityDate);
 
     var lastNumber = day[day.length - 1]
-    if (lastNumber === 1) {
+    if (lastNumber == 1) {
         day += 'st';
     }
-    else if (lastNumber === 2) {
+    else if (lastNumber == 2) {
         day += 'nd';
     }
-    else if (lastNumber === 4) {
+
+    else if (lastNumber == 3) {
         day += 'rd';
+    }
+
+    else if (lastNumber == 4) {
+        day += 'th';
     }
     else {
         day += 'th';
@@ -308,17 +313,22 @@ function displayFutureCityInfo() {
 
 
         var lastNumber = day[day.length - 1]
-        if (lastNumber === 1) {
+        if (lastNumber == 1) {
             day += 'st';
         }
-        else if (lastNumber === 2) {
+        else if (lastNumber == 2) {
             day += 'nd';
         }
-        else if (lastNumber === 4) {
+
+        else if (lastNumber == 3) {
             day += 'rd';
+        } 
+
+        else if (lastNumber == 4) {
+            day += 'th';
         }
         else {
-            day += '';
+            day += 'th';
         }
 
         cityDate = dayLong + ' ' + month + ' ' + day;

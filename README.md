@@ -2,8 +2,7 @@
 
 ## Description
 
-A Weather dashboard that displays the current weather and gives you a 5 day forecast
-
+A Weather dashboard that displays the current weather and gives you a 5 day forecast. This was created for users to be able to see the weather today and the future. The motivation for this was to practice my skills and learn how to use server APIs
 
 
 ## Table of Contents
@@ -15,6 +14,8 @@ A Weather dashboard that displays the current weather and gives you a 5 day fore
 
 ## Installation
 
+To use and open the app, follow this link: https://breakfireaus.github.io/weather-dashboard/
+
 
 ## Technology Used
 
@@ -22,13 +23,37 @@ A Weather dashboard that displays the current weather and gives you a 5 day fore
 - bootstrap
 - Jquery
 - Webapi
-- JS
+- Javascript
 - HTML
 - Server Side api
+- Moment
 
-## Usage
+## Usage and Features
 - Main Page
-![alt text](assets/images/Screenshot-1.jpg)
+![Main Page Image](./assets/images/Readme-images/Screenshot-1.jpg)
+
+
+- Search with Cities
+![Main Page Image](./assets/images/Readme-images/Screenshot-2.jpg)
+
+- Search History with clear button
+
+    ![Main Page Image](./assets/images/Readme-images/Screenshot-3.jpg)
+
+
+- Current and Forecast weather Shows up
+![Main Page Image](./assets/images/Readme-images/Screenshot-7.jpg)
+
+- Current Weather Pop up
+![Main Page Image](./assets/images/Readme-images/Screenshot-4.jpg)
+
+- UV index Changes Color according to green for Low, Yellow for Moderate and Red for High
+
+    ![Main Page Image](./assets/images/Readme-images/Screenshot-5.jpg)
+
+- 5 Day forecast Pop up
+![Main Page Image](./assets/images/Readme-images/Screenshot-6.jpg)
+
 
 ## Credits
 
@@ -38,6 +63,8 @@ A Weather dashboard that displays the current weather and gives you a 5 day fore
 - Jquery documentation
 - MDN web docs
 - https://openweathermap.org/api
+- Traversy Media
+- Moment
 
 ## License
 
